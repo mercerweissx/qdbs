@@ -1,7 +1,9 @@
 package com.mercerweissx.qdbs;
 
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import static java.util.Map.Entry;
 
 
 
@@ -9,8 +11,8 @@ public class BalanceSheet
 {
   private String title;
   
-  private final LinkedList<Transaction> assets = new LinkedList<>();
-  private final LinkedList<Transaction> liabilities = new LinkedList<>();
+  private final LinkedHashMap<String,Long> income = new LinkedHashMap<>();
+  private final LinkedHashMap<String,Long> expenses = new LinkedHashMap<>();
   
   public BalanceSheet(String title)
   {
@@ -22,23 +24,23 @@ public class BalanceSheet
     return title;
   }
   
-  public void addAsset(String name, long value)
+  public void addIncome(String name, long value)
   {
-    assets.add(new Transaction(name, value));
+    income.put(name, value);
   }
   
-  public void addLiability(String name, long value)
+  public void addExpense(String name, long value)
   {
-    liabilities.add(new Transaction(name, value));
+    expenses.put(name, value);
   }
   
-  public List<Transaction> getAssets()
+  public List<Entry<String,Long>> getIncome()
   {
-    return List.copyOf(assets);
+    return List.copyOf(income.sequencedEntrySet());
   }
   
-  public List<Transaction> getLiabilities()
+  public List<Entry<String,Long>> getExpenses()
   {
-    return List.copyOf(liabilities);
+    return List.copyOf(expenses.sequencedEntrySet());
   }
 }

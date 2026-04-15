@@ -1,6 +1,6 @@
 package com.mercerweissx.qdbs;
 
-public record Transaction()
+public record Pair(int a, int b)
 {
 
 }
